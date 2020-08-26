@@ -45,11 +45,12 @@ function ctime:updateTimes()
         end
     end
 
+    if table.IsEmpty( batch ) then return end
+
     local batchCount = table.Count( batch )
 
-    if batchCount == 0 then return end
-
     logger:debug( "Updating " .. batchCount .. " sessions:" )
+    logger:debug( batch )
 
     storage:UpdateBatch( batch )
     ctime.lastUpdate = now
